@@ -472,14 +472,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2741480890078747217, guid: e8cef2b5e865723418cc11b20fc2bddf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741480890078747217, guid: e8cef2b5e865723418cc11b20fc2bddf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4794979485822018983, guid: e8cef2b5e865723418cc11b20fc2bddf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -520,17 +512,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7289959084690116060, guid: e8cef2b5e865723418cc11b20fc2bddf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.07
-      objectReference: {fileID: 0}
     - target: {fileID: 8500449664019015897, guid: e8cef2b5e865723418cc11b20fc2bddf, type: 3}
       propertyPath: m_Name
       value: Driveway
-      objectReference: {fileID: 0}
-    - target: {fileID: 8510920098809052088, guid: e8cef2b5e865723418cc11b20fc2bddf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -548,10 +532,6 @@ PrefabInstance:
     - target: {fileID: 6163381459440972368, guid: 80387c4b74ae07c4c8ef21c8dbd520f1, type: 3}
       propertyPath: m_Name
       value: car
-      objectReference: {fileID: 0}
-    - target: {fileID: 6163381459440972368, guid: 80387c4b74ae07c4c8ef21c8dbd520f1, type: 3}
-      propertyPath: m_TagString
-      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6828418441301813482, guid: 80387c4b74ae07c4c8ef21c8dbd520f1, type: 3}
       propertyPath: m_LocalPosition.x
