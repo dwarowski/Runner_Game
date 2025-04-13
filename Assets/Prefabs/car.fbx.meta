@@ -3,12 +3,57 @@ guid: 679edcb52f7966e41898f6778ecb2983
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CP_1
+    second: {fileID: 2100000, guid: 3aa0ed07a716ea74db3d9ef9e20dff0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Color
+    second: {fileID: 2100000, guid: 0e5d4f15ffb3c744e8946e9260560d2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 9685a983f1e97a14dab95167ea2564fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plater
+    second: {fileID: 2100000, guid: bbb368a4f32066b4fabcf0e4e83ac2ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: but
+    second: {fileID: 2100000, guid: e1f3f4b73d3cfd24e8e3f06b773e910e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: car_lamborghini_murcielago_lp640_None1
+    second: {fileID: 2100000, guid: ffe83582f3f81a84baa6cfe5729563b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glows
+    second: {fileID: 2100000, guid: 79c2d0857ec9d4f4aa4a7661ad4d35f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red_glass
+    second: {fileID: 2100000, guid: bbb368a4f32066b4fabcf0e4e83ac2ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tire
+    second: {fileID: 2100000, guid: 337701407eee68749b8574543ce46945, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
