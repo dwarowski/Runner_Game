@@ -9,6 +9,13 @@ public class CarControl : MonoBehaviour
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
 
+    public float baseMotorTorque = 2000; // Базовый motorTorque (то, что в редакторе)
+    public float baseMaxSpeed = 20;      // Базовая maxSpeed (то, что в редакторе)
+
+    private float motorTorqueModifier = 0f;  // Модификатор motorTorque
+    private float maxSpeedModifier = 0f;   // Модификатор maxSpeed
+
+
     WheelScript[] wheels;
     Rigidbody rigidBody;
 
@@ -22,12 +29,31 @@ public class CarControl : MonoBehaviour
 
         // Find all child GameObjects that have the WheelControl script attached
         wheels = GetComponentsInChildren<WheelScript>();
+
+        // Инициализируем базовые значения
+        baseMotorTorque = motorTorque;
+        baseMaxSpeed = maxSpeed;
+    }
+    public void ApplyBuff(float motorTorqueModifier, float maxSpeedModifier, string buffText)
+    {
+        
+        // Применяем модификаторы
+        this.motorTorqueModifier += motorTorqueModifier;
+        this.maxSpeedModifier += maxSpeedModifier;
+
+        // Обновляем текущие значения
+        motorTorque = baseMotorTorque + this.motorTorqueModifier;
+        maxSpeed = baseMaxSpeed + this.maxSpeedModifier;
+
+        // Ограничиваем значения (опционально)
+        motorTorque = Mathf.Max(motorTorque, 0); // Мотор не может быть отрицательным
+        maxSpeed = Mathf.Max(maxSpeed, 0); // Скорость не может быть отрицательной (или можно позволить задний ход
+        Debug.Log("Motor Torque: " + motorTorque + ", Max Speed: " + maxSpeed);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         float vInput = Input.GetAxis("Vertical");
         float hInput = Input.GetAxis("Horizontal");
 

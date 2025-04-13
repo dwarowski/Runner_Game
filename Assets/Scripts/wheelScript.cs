@@ -30,7 +30,5 @@ public class WheelScript : MonoBehaviour
         WheelCollider.GetWorldPose(out position, out rotation);
         wheelModel.transform.position = position;
         wheelModel.transform.rotation = rotation;
-        Debug.Log(rotation);
-        Debug.Log(position);
     }
 }
