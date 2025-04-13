@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5704772696993003969}
   - component: {fileID: 6501968222104236154}
   m_Layer: 0
-  m_Name: WheelFL (1)
+  m_Name: WheelFL_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 591586588926298723}
   - component: {fileID: 6360341395554652940}
   m_Layer: 0
-  m_Name: WheelRR (1)
+  m_Name: WheelRR_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 2616725751488196119}
   - component: {fileID: 1283939252346400500}
   m_Layer: 0
-  m_Name: WheelRL (1)
+  m_Name: WheelRL_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 8467851634443598285}
   - component: {fileID: 477786929464749753}
   m_Layer: 0
-  m_Name: WheelFR (1)
+  m_Name: WheelFR_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
