@@ -15,6 +15,9 @@ public class CarControl : MonoBehaviour
     private float motorTorqueModifier = 0f;  // Модификатор motorTorque
     private float maxSpeedModifier = 0f;   // Модификатор maxSpeed
 
+    public UI ui;
+    private float totalDistance = 0f;   // Общее пройденное расстояние
+    private Vector3 lastPosition;       // Предыдущая позиция игрока
 
     WheelScript[] wheels;
     Rigidbody rigidBody;
@@ -33,6 +36,12 @@ public class CarControl : MonoBehaviour
         // Инициализируем базовые значения
         baseMotorTorque = motorTorque;
         baseMaxSpeed = maxSpeed;
+        lastPosition = transform.position;
+
+        if (ui == null)
+        {
+            Debug.LogError("UIManager не назначен в CarControl!");
+        }
     }
     public void ApplyBuff(float motorTorqueModifier, float maxSpeedModifier, string buffText)
     {
@@ -60,7 +69,6 @@ public class CarControl : MonoBehaviour
         // Calculate current speed in relation to the forward direction of the car
         // (this returns a negative number when traveling backwards)
         float forwardSpeed = Vector3.Dot(transform.forward, rigidBody.linearVelocity);
-
 
         // Calculate how close the car is to top speed
         // as a number from zero to one
@@ -102,6 +110,26 @@ public class CarControl : MonoBehaviour
                 wheel.WheelCollider.brakeTorque = Mathf.Abs(vInput) * brakeTorque;
                 wheel.WheelCollider.motorTorque = 0;
             }
+        }
+
+
+        if (rigidBody.linearVelocity.magnitude > (maxSpeed / 3.6f))
+        {
+            rigidBody.linearVelocity = rigidBody.linearVelocity.normalized * (maxSpeed / 3.6f);
+        }
+
+        UiUpdate(forwardSpeed);
+        
+    }
+    private void UiUpdate(float forwardSpeed)
+    {
+        float distanceThisFrame = Vector3.Distance(transform.position, lastPosition);
+        totalDistance += distanceThisFrame;
+        lastPosition = transform.position;
+
+        if (ui != null)
+        {
+            ui.UpdateUI(Mathf.Abs(forwardSpeed) * 3.6f, totalDistance); // Передаем скорость в км/ч
         }
     }
 }
