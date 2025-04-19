@@ -56,7 +56,7 @@ public class CarControl : MonoBehaviour
 
         // Ограничиваем значения (опционально)
         motorTorque = Mathf.Max(motorTorque, 0); // Мотор не может быть отрицательным
-        maxSpeed = Mathf.Max(maxSpeed, 0); // Скорость не может быть отрицательной (или можно позволить задний ход
+        maxSpeed = Mathf.Max(maxSpeed, 1); // Скорость не может быть отрицательной (или можно позволить задний ход
         Debug.Log("Motor Torque: " + motorTorque + ", Max Speed: " + maxSpeed);
     }
 
