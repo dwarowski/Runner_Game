@@ -2,25 +2,72 @@ using UnityEngine;
 
 public class BuffChoose : MonoBehaviour
 {
-    public float speedModifier = 0f; // Модификатор скорости (положительное или отрицательное значение)
-    public float powerModifier = 0f;  // Модификатор мощности (положительное или отрицательное значение)
-    public string buffText = "";        // Текст баффа для отображения
+    [System.Serializable]
+    public class BuffOption
+    {
+        public float speedModifier;
+        public float powerModifier;
+        public string buffText;
+    }
+
+    public BuffOption[] possibleBuffs;
+
+    private float speedModifier = 0f;
+    private float powerModifier = 0f;
+    private string buffText = "";
+
+    private bool initialized = false;
+    private bool alreadyTriggered = false;
+
+    private BuffModuleController parentModule;
+
+    void Start()
+    {
+        parentModule = GetComponentInParent<BuffModuleController>();
+
+        if (possibleBuffs != null && possibleBuffs.Length > 0)
+        {
+            int index = Random.Range(0, possibleBuffs.Length);
+            BuffOption chosen = possibleBuffs[index];
+
+            speedModifier = chosen.speedModifier;
+            powerModifier = chosen.powerModifier;
+            buffText = chosen.buffText;
+
+            initialized = true;
+        }
+        else
+        {
+            Debug.LogWarning("Нет доступных баффов в BuffChoose!");
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        // Проверяем, что триггер сработал с игроком
-        if (other.CompareTag("Player")) // Убедитесь, что у вашего игрока установлен тег "Player"
+        if (!initialized || alreadyTriggered) return;
+
+        if (other.CompareTag("Player"))
         {
-            // Получаем компонент PlayerController (или как он у тебя называется)
             CarControl carControl = other.GetComponentInParent<CarControl>();
 
             if (carControl != null)
             {
-                // Применяем бафф/дебафф к игроку
-                carControl.ApplyBuff( powerModifier, speedModifier, buffText);
+                alreadyTriggered = true;
+
+                carControl.ApplyBuff(powerModifier, speedModifier, buffText);
+
+                if (parentModule != null)
+                {
+                    parentModule.ChooseBuff(); // удалит весь модуль
+                }
+                else
+                {
+                    Destroy(gameObject); // fallback
+                }
             }
             else
             {
-                Debug.LogError("Игрок не имеет компонента PlayerController!");
+                Debug.LogError("Игрок не имеет компонента CarControl!");
             }
         }
     }
