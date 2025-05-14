@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class RoadGenerator : MonoBehaviour
 {
@@ -20,17 +20,13 @@ public class RoadGenerator : MonoBehaviour
     public int maxTiles = 15;
 
     private Vector3 nextSpawnPosition;
-    private readonly Queue<GameObject> spawnedTiles = new Queue<GameObject>();
+    private readonly Queue<GameObject> spawnedTiles = new();
 
-    void Start()
+    public void Initialize(Transform playerTransform)
     {
-        if (player == null)
-        {
-            Debug.LogError("Player не назначен!");
-            return;
-        }
-
+        player = playerTransform;
         nextSpawnPosition = player.position;
+        spawnedTiles.Clear();
 
         SpawnSpecificTile(firstTilePrefab);
 
@@ -39,6 +35,8 @@ public class RoadGenerator : MonoBehaviour
             SpawnNextTile();
         }
     }
+
+
     void Update()
     {
         float distanceAhead = nextSpawnPosition.z - player.position.z;
@@ -77,6 +75,7 @@ public class RoadGenerator : MonoBehaviour
 
         spawnedTiles.Enqueue(spawned);
         nextSpawnPosition += new Vector3(0, 0, tileLength);
+        Debug.Log("firstTile");
     }
 
     GameObject GetRandomPrefab()

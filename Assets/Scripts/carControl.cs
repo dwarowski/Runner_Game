@@ -8,6 +8,7 @@ public class CarControl : MonoBehaviour
     public float steeringRange = 30;
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
+    public float HP = 100f;
 
     public float baseMotorTorque = 2000; // Базовый motorTorque (то, что в редакторе)
     public float baseMaxSpeed = 20;      // Базовая maxSpeed (то, что в редакторе)
@@ -43,9 +44,27 @@ public class CarControl : MonoBehaviour
             Debug.LogError("UIManager не назначен в CarControl!");
         }
     }
+    public void Reinitialize()
+    {
+        rigidBody = GetComponent<Rigidbody>();
+        // Повторно ищем все колёса
+        wheels = GetComponentsInChildren<WheelScript>();
+
+        // Повторно можно применить массу, если это нужно
+        rigidBody.centerOfMass = Vector3.zero;
+        rigidBody.centerOfMass += Vector3.up * centreOfGravityOffset;
+
+        // Сбросить или обновить нужные переменные
+        baseMotorTorque = motorTorque;
+        baseMaxSpeed = maxSpeed;
+        lastPosition = transform.position;
+
+        Debug.Log("CarControl повторно инициализирован после эволюции.");
+    }
+
     public void ApplyBuff(float motorTorqueModifier, float maxSpeedModifier, string buffText)
     {
-        
+
         // Применяем модификаторы
         this.motorTorqueModifier += motorTorqueModifier;
         this.maxSpeedModifier += maxSpeedModifier;
@@ -119,8 +138,9 @@ public class CarControl : MonoBehaviour
         }
 
         UiUpdate(forwardSpeed);
-        
+
     }
+
     private void UiUpdate(float forwardSpeed)
     {
         float distanceThisFrame = Vector3.Distance(transform.position, lastPosition);
@@ -132,4 +152,5 @@ public class CarControl : MonoBehaviour
             ui.UpdateUI(Mathf.Abs(forwardSpeed) * 3.6f, totalDistance); // Передаем скорость в км/ч
         }
     }
+
 }

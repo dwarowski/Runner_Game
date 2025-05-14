@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class WheelScript : MonoBehaviour
@@ -15,7 +14,7 @@ public class WheelScript : MonoBehaviour
 
     Vector3 position;
     Quaternion rotation;
-    
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,7 +27,6 @@ public class WheelScript : MonoBehaviour
         // Get the Wheel collider's world pose values and
         // use them to set the wheel model's position and rotation
         WheelCollider.GetWorldPose(out position, out rotation);
-        wheelModel.transform.position = position;
-        wheelModel.transform.rotation = rotation;
+        wheelModel.transform.SetPositionAndRotation(position, rotation);
     }
 }
