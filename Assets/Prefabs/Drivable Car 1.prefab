@@ -556,6 +556,7 @@ MonoBehaviour:
   steeringRange: 30
   steeringRangeAtMaxSpeed: 10
   centreOfGravityOffset: -1
+  HP: 100
   baseMotorTorque: 2000
   baseMaxSpeed: 20
   ui: {fileID: 0}
