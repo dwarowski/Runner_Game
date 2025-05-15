@@ -62,7 +62,7 @@ public class CarControl : MonoBehaviour
         Debug.Log("CarControl повторно инициализирован после эволюции.");
     }
 
-    public void ApplyBuff(float motorTorqueModifier, float maxSpeedModifier, string buffText)
+    public void ApplyBuff(float motorTorqueModifier, float maxSpeedModifier)
     {
 
         // Применяем модификаторы
@@ -151,6 +151,15 @@ public class CarControl : MonoBehaviour
         {
             ui.UpdateUI(Mathf.Abs(forwardSpeed) * 3.6f, totalDistance); // Передаем скорость в км/ч
         }
+    }
+    public void SetTotalDistance(float distance)
+    {
+        totalDistance = distance;
+        lastPosition = transform.position;
+    }
+    public float GetTotalDistance()
+    {
+        return totalDistance;
     }
 
 }

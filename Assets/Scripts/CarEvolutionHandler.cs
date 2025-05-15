@@ -9,7 +9,7 @@ public class CarEvolutionHandler : MonoBehaviour
     public RoadGenerator roadGenerator;
     public GroundRepeater SurfaceRepeater;
     private GameObject currentCarInstance;
-    public void EvolveCar(GameObject vfxPrefab, Vector3 vfxPosition)
+    public void EvolveCar(GameObject vfxPrefab, Vector3 vfxPosition, Transform vfxParent)
     {
         if (transform.childCount > 0)
         {
@@ -27,18 +27,30 @@ public class CarEvolutionHandler : MonoBehaviour
 
         // Визуальный эффект
         if (vfxPrefab != null)
-            Instantiate(vfxPrefab, vfxPosition, Quaternion.identity);
-
+        {
+            GameObject vfx = Instantiate(vfxPrefab, vfxPosition, Quaternion.identity, vfxParent);
+            if (vfx.TryGetComponent<ParticleSystem>(out var ps))
+            {
+                Destroy(vfx, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+            else
+            {
+                Destroy(vfx, 3f); // запасной вариант
+            }
+        }
 
         // Создаём новую машину 
         Vector3 spawnPos = currentCarInstance.transform.position;
         Quaternion spawnRot = currentCarInstance.transform.rotation;
         Vector3 currentVelocity = Vector3.zero;
 
+        // Сохраняем движение старой машины
         if (currentCarInstance.TryGetComponent<Rigidbody>(out var oldRb))
             currentVelocity = oldRb.linearVelocity;
 
+        // Создаем новую машину
         GameObject newCar = Instantiate(nextPrefab, spawnPos, spawnRot, transform);
+
         // Назначаем UI в новый CarControl
         if (newCar.TryGetComponent<CarControl>(out var newCarControl))
         {
@@ -46,12 +58,22 @@ public class CarEvolutionHandler : MonoBehaviour
             newCarControl.Reinitialize();
         }
 
-        if (newCar.TryGetComponent<Rigidbody>(out var newRb))
-            newRb.linearVelocity = currentVelocity;
-
+        // Переназначем генераторы на новую машину
         Transform carTransform = newCar.GetComponent<Transform>();
         roadGenerator.player = carTransform;
         SurfaceRepeater.player = carTransform;
+
+        // Восстановить дистанцию
+        float savedDistance = 0f;
+        if (currentCarInstance != null && currentCarInstance.TryGetComponent<CarControl>(out var oldCarControl))
+        {
+            savedDistance = oldCarControl.GetTotalDistance();
+        }
+        newCarControl.SetTotalDistance(savedDistance);
+
+        // Возвращем движение машине
+        if (newCar.TryGetComponent<Rigidbody>(out var newRb))
+            newRb.linearVelocity = currentVelocity;
 
         // Перемещаем MainCamera к новой машине (если есть CameraAnchor)
         Transform cameraAnchor = newCar.transform.Find("CameraAnchor");

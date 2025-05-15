@@ -103,10 +103,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8301688750352276906}
     m_Modifications:
-    - target: {fileID: 939663722313660754, guid: 87fbee64a97fee245a6b9f01d099d341, type: 3}
-      propertyPath: evolutionVFXPrefab
-      value: 
-      objectReference: {fileID: 1599361744246938256, guid: c8864a75fed28704797760a33c3469c7, type: 3}
     - target: {fileID: 1105586535160737877, guid: 87fbee64a97fee245a6b9f01d099d341, type: 3}
       propertyPath: m_Name
       value: Car Upgrade

@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b9dc43a078f124e8287bf3c6f2ecae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  evolutionVFXPrefab: {fileID: 0}
+  evolutionVFXPrefab: {fileID: 1599361744246938256, guid: c8864a75fed28704797760a33c3469c7, type: 3}
   vfxSpawnPoint: {fileID: 7320993968224558369}
 --- !u!1001 &7848661018605287285
 PrefabInstance:

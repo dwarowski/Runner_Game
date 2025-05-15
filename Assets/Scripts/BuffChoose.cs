@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class BuffChoose : MonoBehaviour
@@ -11,10 +12,9 @@ public class BuffChoose : MonoBehaviour
     }
 
     public BuffOption[] possibleBuffs;
-
+    public TextMeshPro upgradeText; 
     private float speedModifier = 0f;
     private float powerModifier = 0f;
-    private string buffText = "";
 
     private bool initialized = false;
     private bool alreadyTriggered = false;
@@ -32,7 +32,7 @@ public class BuffChoose : MonoBehaviour
 
             speedModifier = chosen.speedModifier;
             powerModifier = chosen.powerModifier;
-            buffText = chosen.buffText;
+            upgradeText.text = chosen.buffText;
 
             initialized = true;
         }
@@ -54,7 +54,7 @@ public class BuffChoose : MonoBehaviour
             {
                 alreadyTriggered = true;
 
-                carControl.ApplyBuff(powerModifier, speedModifier, buffText);
+                carControl.ApplyBuff(powerModifier, speedModifier);
 
                 if (parentModule != null)
                 {
