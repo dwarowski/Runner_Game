@@ -7,10 +7,8 @@ public class PauseMenuHandler : MonoBehaviour
     public GameObject pauseMenu; // Панель паузы
     public Button resumeButton;
     public Button mainMenuButton;
-    [HideInInspector]
-    public GameObject gameMenu;
-    [HideInInspector]
-    public GameObject mainMenu;
+    private GameObject gameMenu;
+    private GameObject mainMenu;
 
     private bool isPaused = false;
 
@@ -57,5 +55,12 @@ public class PauseMenuHandler : MonoBehaviour
         pauseMenu.SetActive(false);
         gameMenu.SetActive(false);
         mainMenu.SetActive(true);
+
+    }
+
+    public void SetGameAndMainMenu(GameObject gameMenu, GameObject mainMenu)
+    {
+        this.gameMenu = gameMenu;
+        this.mainMenu = mainMenu;
     }
 }

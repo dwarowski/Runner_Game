@@ -6,21 +6,19 @@ public class GameStartHandler : MonoBehaviour
     public GameObject mainMenu;
     public GameObject gameMenu;
     public GameObject pauseMenu;
+    public GameObject carPrefab;            // Префаб первой машины
+    public GameObject surfaceCollector;
+    public GameObject roadCollector;
+    public GameObject mainCamera;               // Главная камера (Main Camera)
+    private GameObject currentCar;          // Текущая инстанс-машина
+
     public Button playButton;
     public Button pauseButton;
 
-    public GameObject carPrefab;            // Префаб первой машины
-    public Transform carSpawnPoint;         // Точка, где должна появиться машина
-
-    public Camera mainCamera;               // Главная камера (Main Camera)
+    public Transform carHolder;         // Точка, где должна появиться машина
     public UI ui;                           // UI скрипт со спидометром и пр.
 
-    public GameObject surfaceCollector;
-    public GameObject roadCollector;
-
-    private GameObject currentCar;          // Текущая инстанс-машина
-
-
+    private PauseMenuHandler pauseMenuScript;
     void Start()
     {
         if (ui == null ||
@@ -33,22 +31,20 @@ public class GameStartHandler : MonoBehaviour
             pauseButton == null || 
             pauseMenu == null || 
             carPrefab == null || 
-            carSpawnPoint == null)
+            carHolder == null)
         {
             Debug.LogWarning("GameStartHandler: не все поля заданы в инспекторе.");
             return;
         }
+        pauseMenuScript = pauseMenu.GetComponent<PauseMenuHandler>();
 
-        PauseMenuHandler pauseMenuScript = pauseMenu.GetComponent<PauseMenuHandler>();
-        pauseMenuScript.gameMenu = gameMenu;
-        pauseMenuScript.mainMenu = mainMenu;
-
+        pauseMenuScript.SetGameAndMainMenu(gameMenu, mainMenu);
         playButton.onClick.AddListener(StartGame);
         pauseButton.onClick.AddListener(PauseGame);
 
         Time.timeScale = 0f;
 
-        mainCamera.gameObject.SetActive(true);
+        mainCamera.SetActive(true);
         gameMenu.SetActive(false);
     }
 
@@ -61,7 +57,7 @@ public class GameStartHandler : MonoBehaviour
         gameMenu.SetActive(true);
 
         // Спавним первую машину
-        currentCar = Instantiate(carPrefab, carSpawnPoint.position, carSpawnPoint.rotation, carSpawnPoint);
+        currentCar = Instantiate(carPrefab, carHolder.position, carHolder.rotation, carHolder);
         Transform carTrasnform = currentCar.GetComponent<Transform>();
 
 
@@ -70,8 +66,7 @@ public class GameStartHandler : MonoBehaviour
         if (cameraAnchor != null)
         {
             mainCamera.transform.SetParent(cameraAnchor);
-            mainCamera.transform.localPosition = Vector3.zero;
-            mainCamera.transform.localRotation = Quaternion.identity;
+            mainCamera.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
         else
         {
@@ -85,17 +80,14 @@ public class GameStartHandler : MonoBehaviour
             carControl.ui = ui;
         }
 
-        RoadGenerator roadGen = roadCollector.GetComponent<RoadGenerator>();
-        if (roadGen != null)
+        if (roadCollector.TryGetComponent<RoadGenerator>(out var roadGen))
         {
-            roadGen.player = carTrasnform;
             roadGen.Initialize(carTrasnform);
         }
 
-        GroundRepeater surfaceGen = surfaceCollector.GetComponent<GroundRepeater>();
-        if (surfaceGen != null)
+        if (surfaceCollector.TryGetComponent<GroundRepeater>(out var surfaceGen))
         {
-            surfaceGen.player = carTrasnform;
+            surfaceGen.Initialize(carTrasnform);
         }
 
         Time.timeScale = 1f;

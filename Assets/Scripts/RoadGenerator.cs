@@ -39,6 +39,8 @@ public class RoadGenerator : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return;
+
         float distanceAhead = nextSpawnPosition.z - player.position.z;
 
         if (distanceAhead < tilesAhead * tileLength)
