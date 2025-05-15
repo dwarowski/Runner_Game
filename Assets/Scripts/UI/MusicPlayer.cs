@@ -13,9 +13,26 @@ public class MusicPlayer : MonoBehaviour
     public int Rand;
     public int Index;
     // Start is called before the first frame update
+    void Start()
+    {
+        if (name == null || isp == null)
+        {
+            Debug.LogError("Ничего не вижу");
+            return;
+        }   
+    }
+    
     void Awake()
     {
+        // 1. Находим AudioSource на этом же объекте
         m_AudioSource = GetComponent<AudioSource>();
+
+        // 2. Проверяем, что он есть
+        if (m_AudioSource == null)
+        {
+            Debug.LogError("AudioSource component is missing on " + gameObject.name);
+            return;
+        }
     }
     public void Prev()
     {
@@ -58,14 +75,7 @@ public class MusicPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (_Play == true)
-        {
-            time.value += Time.deltaTime;
-        }
-        if (time.value == time.maxValue)
-        {
-            Next();
-        }
+     
     }
     void _AudioSourcePlay()
     {
@@ -75,8 +85,8 @@ public class MusicPlayer : MonoBehaviour
         string[] s = m_AudioSource.clip.name.Split('-');
         name.text = s[1];
         isp.text = s[0];
-        time.maxValue = m_AudioSource.clip.length;
-        time.value = 0;
+        //time.maxValue = m_AudioSource.clip.length;
+        //time.value = 0;
     }
 
 }
