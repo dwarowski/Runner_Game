@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2631392286756087185}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MusicPlayer, Assembly-CSharp
         m_MethodName: Prev
         m_Mode: 1
@@ -280,7 +280,6 @@ GameObject:
   - component: {fileID: 5920550715883900767}
   - component: {fileID: 3599522402821099225}
   - component: {fileID: 5316591011920003984}
-  - component: {fileID: 7389801154808854507}
   m_Layer: 0
   m_Name: Isp
   m_TagString: Untagged
@@ -406,25 +405,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7389801154808854507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2713849765562539084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 877ce6a5606cbc641964b002a9294102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Play: 0
-  name: {fileID: 6781082649836464568}
-  isp: {fileID: 5316591011920003984}
-  time: {fileID: 0}
-  audios: []
-  Rand: 0
-  Index: 0
 --- !u!1 &3431567200458400186
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +662,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2631392286756087185}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MusicPlayer, Assembly-CSharp
         m_MethodName: PlayAudio
         m_Mode: 1
@@ -705,8 +685,6 @@ GameObject:
   - component: {fileID: 1113294835533283085}
   - component: {fileID: 4876892956953249436}
   - component: {fileID: 751107813434986462}
-  - component: {fileID: 2432518865715626456}
-  - component: {fileID: 2631392286756087185}
   m_Layer: 0
   m_Name: AudioPlayer
   m_TagString: Untagged
@@ -773,125 +751,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!82 &2432518865715626456
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5129902127501832293}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.7
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &2631392286756087185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5129902127501832293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 877ce6a5606cbc641964b002a9294102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Play: 0
-  name: {fileID: 1466822090916873655}
-  isp: {fileID: 5316591011920003984}
-  time: {fileID: 0}
-  audios:
-  - {fileID: 8300000, guid: 7c15d5b981a3f6949ae932a2376eb21c, type: 3}
-  - {fileID: 8300000, guid: fe942cd2281e89d47b0e740690ff0f97, type: 3}
-  - {fileID: 8300000, guid: 09c55632107b0f34fa045ef596611ff1, type: 3}
-  Rand: 0
-  Index: 0
 --- !u!1 &6165124996149042230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,7 +1008,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2631392286756087185}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MusicPlayer, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
@@ -1172,7 +1031,6 @@ GameObject:
   - component: {fileID: 3915085586255184961}
   - component: {fileID: 8750200960124973199}
   - component: {fileID: 1466822090916873655}
-  - component: {fileID: 5584556822584095477}
   m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
@@ -1300,22 +1158,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5584556822584095477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7928313885098520334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 877ce6a5606cbc641964b002a9294102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Play: 0
-  name: {fileID: 6781082649836464568}
-  isp: {fileID: 0}
-  time: {fileID: 0}
-  audios: []
-  Rand: 0
-  Index: 0

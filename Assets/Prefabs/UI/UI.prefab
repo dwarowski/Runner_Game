@@ -210,10 +210,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4398771426795998286, guid: 44bfcb5c2b077274684e0ed50c606a85, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2631392286756087185, guid: a224bdda5d7888a418c9224380e6f152, type: 3}
     - target: {fileID: 5273595393382755612, guid: 44bfcb5c2b077274684e0ed50c606a85, type: 3}
       propertyPath: m_Name
       value: Main Menu Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6416257602966521031, guid: 44bfcb5c2b077274684e0ed50c606a85, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2631392286756087185, guid: a224bdda5d7888a418c9224380e6f152, type: 3}
     - target: {fileID: 7252039568163404139, guid: 44bfcb5c2b077274684e0ed50c606a85, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -294,6 +302,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7665857600951421503, guid: 44bfcb5c2b077274684e0ed50c606a85, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2631392286756087185, guid: a224bdda5d7888a418c9224380e6f152, type: 3}
     - target: {fileID: 8000014804430371513, guid: 44bfcb5c2b077274684e0ed50c606a85, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
