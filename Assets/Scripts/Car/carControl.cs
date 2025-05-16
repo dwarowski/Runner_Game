@@ -208,6 +208,7 @@ public class CarControl : MonoBehaviour
             // Не наносим урон, если столкнулись с объектом с тегом "Road"
             return;
         }
+        Debug.Log("", collision.gameObject);
 
         // Пример: урон зависит от скорости удара
         float impactForce = collision.relativeVelocity.magnitude;

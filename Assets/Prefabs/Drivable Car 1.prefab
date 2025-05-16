@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motorTorque: 2000
-  brakeTorque: 2000
+  brakeTorque: 29000
   maxSpeed: 100
   steeringRange: 30
   steeringRangeAtMaxSpeed: 10

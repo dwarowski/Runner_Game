@@ -36,6 +36,7 @@ public class PauseMenuHandler : MonoBehaviour
         pauseMenu.SetActive(true);
         gameMenuCanvas.SetActive(false);
         musicPlayerScript.audioPlayer = audioPlayer;
+        musicPlayerScript.InitComponents();
         isPaused = true;
     }
 

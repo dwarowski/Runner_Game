@@ -120,6 +120,7 @@ public class GameHandler : MonoBehaviour
         gameOverCanvas.SetActive(false);
         mainMenuCanvas.SetActive(true);
         musicPlayerScript.audioPlayer = audioPlayer;
+        musicPlayerScript.InitComponents();
 
         mainMenuLocation.transform.Find("CameraAnchor").TryGetComponent(out cameraAnchor);
         if (cameraAnchor != null)

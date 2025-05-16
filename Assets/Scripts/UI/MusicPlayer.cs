@@ -87,7 +87,7 @@ public class MusicPlayer : MonoBehaviour
         singer.text = s[0];
     }
 
-    private void InitComponents()
+    public void InitComponents()
     {
         
         audioPlayer.Find("Title").TryGetComponent(out title);
@@ -103,8 +103,36 @@ public class MusicPlayer : MonoBehaviour
         navigationTransform.Find("Next Button").TryGetComponent(out previousButton);
 
         audioPlayer.Find("Play Button").TryGetComponent(out playButton);
+
+        playButton.onClick.RemoveAllListeners();
+        nextButton.onClick.RemoveAllListeners();
+        previousButton.onClick.RemoveAllListeners();
+
         playButton.onClick.AddListener(PlayAudio);
         nextButton.onClick.AddListener(Next);
         previousButton.onClick.AddListener(Prev);
+
+        if (audios != null && audios.Length > 0)
+        {
+            if (Index < 0 || Index >= audios.Length)
+                Index = 0;
+
+            var clip = audios[Index];
+            if (clip != null)
+            {
+                m_AudioSource.clip = clip;
+
+                string[] s = clip.name.Split('-');
+                title.text = s.Length > 1 ? s[1] : clip.name;
+                singer.text = s.Length > 0 ? s[0] : "";
+            }
+        }
+
+        void OnDisable()
+        {
+            PlayerPrefs.SetInt("MusicIndex", Index);
+            PlayerPrefs.SetFloat("MusicTime", m_AudioSource.time);
+        }
+
     }
 }
