@@ -73,7 +73,6 @@ public class RoadGenerator : MonoBehaviour
 
         spawnedTiles.Enqueue(finish);
         nextSpawnPosition += new Vector3(0, 0, tileLength);
-        Debug.Log("Finish tile spawned at Z = " + nextSpawnPosition.z);
     }
 
     void SpawnNextTile()
