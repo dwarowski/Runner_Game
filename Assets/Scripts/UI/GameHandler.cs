@@ -6,6 +6,7 @@ public class GameHandler : MonoBehaviour
     public static GameHandler Instance { get; private set; }
     public GameObject mainMenuCanvas;
     public GameObject gameMenuCanvas;
+    public GameObject finishMenuCanvas;
     public GameObject pauseMenuObject;
     public GameObject gameOverCanvas;
     public GameObject mainMenuLocation;
@@ -38,14 +39,12 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         InitComponents();
-
         Time.timeScale = 0f;
     }
 
     public void StartGame()
     {
         ClearScene();
-
         // Отключаем меню
         mainMenuCanvas.SetActive(false);
 
@@ -87,7 +86,6 @@ public class GameHandler : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        Debug.Log("Game started");
     }
 
     public void PauseGame()
@@ -111,6 +109,8 @@ public class GameHandler : MonoBehaviour
 
     public void ToMenu()
     {
+        ClearScene();
+
         gameMenuCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
         mainMenuCanvas.SetActive(true);
@@ -124,8 +124,17 @@ public class GameHandler : MonoBehaviour
         }
     }
 
+    public void ShowVictory()
+    {
+        Time.timeScale = 0f;
+        finishMenuCanvas.SetActive(true);
+        gameMenuCanvas.SetActive(false);
+    }
+
     private void ClearScene()
     {
+        carHolder.gameObject.TryGetComponent<CarEvolutionHandler>(out var carEvolutionHandler);
+        carEvolutionHandler.currentStage = 0;
 
         if (roadCollector.transform.childCount > 0)
         {

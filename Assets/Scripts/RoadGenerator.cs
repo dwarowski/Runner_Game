@@ -28,6 +28,7 @@ public class RoadGenerator : MonoBehaviour
 
     public void Initialize(Transform playerTransform)
     {
+        hasSpawnedFinish = false;
         player = playerTransform;
         nextSpawnPosition = player.position;
         spawnedTiles.Clear();
@@ -43,7 +44,6 @@ public class RoadGenerator : MonoBehaviour
 
     void Update()
     {
-       
         if (player == null || hasSpawnedFinish) return;
         float distanceAhead = nextSpawnPosition.z - player.position.z;
         if (nextSpawnPosition.z >= finishDistance && !hasSpawnedFinish)
@@ -62,7 +62,7 @@ public class RoadGenerator : MonoBehaviour
             }
         }
     }
-        void SpawnFinishTile()
+    void SpawnFinishTile()
     {
         GameObject finish = Instantiate(
             finishTilePrefab,

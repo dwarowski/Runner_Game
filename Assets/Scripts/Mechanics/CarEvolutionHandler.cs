@@ -9,6 +9,7 @@ public class CarEvolutionHandler : MonoBehaviour
     public RoadGenerator roadGenerator;
     public GroundRepeater surfaceRepeater;
     private GameObject currentCarInstance;
+
     public void EvolveCar(GameObject vfxPrefab, Vector3 vfxPosition, Transform vfxParent)
     {
         if (transform.childCount > 0)
@@ -89,7 +90,5 @@ public class CarEvolutionHandler : MonoBehaviour
             Destroy(currentCarInstance);
         }
         currentCarInstance = newCar;
-
-        Debug.Log($"Эволюция: новая машина создана на стадии {currentStage}");
     }
 }
