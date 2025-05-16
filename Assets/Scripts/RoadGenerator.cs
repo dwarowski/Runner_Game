@@ -8,12 +8,13 @@ public class RoadGenerator : MonoBehaviour
     public class RoadPrefab
     {
         public GameObject prefab;
-        public int weight = 1; // Частота появления
+        public int weight = 1; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     public GameObject firstTilePrefab;
+    public GameObject finishTilePrefab;
     public List<RoadPrefab> roadPrefabs;
-    public Transform player; // Машина
+    public Transform player; // пїЅпїЅпїЅпїЅпїЅпїЅ
     public float roadYOffset = -0.1f;
     public float tileLength = 8;
     public int tilesAhead = 10;
@@ -21,6 +22,9 @@ public class RoadGenerator : MonoBehaviour
 
     private Vector3 nextSpawnPosition;
     private readonly Queue<GameObject> spawnedTiles = new();
+    private bool hasSpawnedFinish = false;
+    public float finishDistance = 500f;
+
 
     public void Initialize(Transform playerTransform)
     {
@@ -39,20 +43,37 @@ public class RoadGenerator : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
-
+       
+        if (player == null || hasSpawnedFinish) return;
         float distanceAhead = nextSpawnPosition.z - player.position.z;
-
+        if (nextSpawnPosition.z >= finishDistance && !hasSpawnedFinish)
+        {
+            SpawnFinishTile();
+            hasSpawnedFinish = true;
+            return; // Р’С‹С…РѕРґРёРј вЂ” Р±РѕР»СЊС€Рµ РЅРµ СЃРїР°РІРЅРёРј
+        }
         if (distanceAhead < tilesAhead * tileLength)
         {
             SpawnNextTile();
-
             if (spawnedTiles.Count > maxTiles)
             {
                 GameObject oldest = spawnedTiles.Dequeue();
                 Destroy(oldest);
             }
         }
+    }
+        void SpawnFinishTile()
+    {
+        GameObject finish = Instantiate(
+            finishTilePrefab,
+            nextSpawnPosition + new Vector3(0, roadYOffset, 0),
+            Quaternion.identity,
+            this.transform
+        );
+
+        spawnedTiles.Enqueue(finish);
+        nextSpawnPosition += new Vector3(0, 0, tileLength);
+        Debug.Log("Finish tile spawned at Z = " + nextSpawnPosition.z);
     }
 
     void SpawnNextTile()
@@ -78,6 +99,7 @@ public class RoadGenerator : MonoBehaviour
         spawnedTiles.Enqueue(spawned);
         nextSpawnPosition += new Vector3(0, 0, tileLength);
     }
+
 
     GameObject GetRandomPrefab()
     {
