@@ -331,19 +331,23 @@ MonoBehaviour:
   finishTilePrefab: {fileID: 1646384365031437784, guid: 4247780367bafc74f93255a10f8877fc, type: 3}
   roadPrefabs:
   - prefab: {fileID: 3018881173564194384, guid: ce2947e924e51d844b9082425f321df8, type: 3}
-    weight: 0
+    weight: 3
   - prefab: {fileID: 4620332727846221963, guid: c9ba32ff7c53d2443bcb2b9aa1c11851, type: 3}
     weight: 1
   - prefab: {fileID: 2445970144016965440, guid: a0ddf72e23f24114bafd1d660cc90dc1, type: 3}
-    weight: 0
+    weight: 4
   - prefab: {fileID: 4438805183769528373, guid: 0e11e4ce538e5fd41b61b52493cfbf9c, type: 3}
-    weight: 0
+    weight: 4
+  - prefab: {fileID: 8047307605130694254, guid: 1ccc0466caa61284a9257131d2eda722, type: 3}
+    weight: 4
+  - prefab: {fileID: 8047307605130694254, guid: 683fe9483f6be34438156003d2cbc4eb, type: 3}
+    weight: 4
   player: {fileID: 0}
   roadYOffset: -0.27
   tileLength: 8.86
-  tilesAhead: 1
-  maxTiles: 2
-  finishDistance: 2
+  tilesAhead: 8
+  maxTiles: 60
+  finishDistance: 500
 --- !u!1 &635259036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 814236571268087371, guid: d9eeed20c89cb924c94266dddcfbebda, type: 3}
@@ -489,6 +493,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fe942cd2281e89d47b0e740690ff0f97, type: 3}
   - {fileID: 8300000, guid: 7c15d5b981a3f6949ae932a2376eb21c, type: 3}
   - {fileID: 8300000, guid: 09c55632107b0f34fa045ef596611ff1, type: 3}
+  - {fileID: 8300000, guid: 423047f9b51b50b49acb198b9b37e4aa, type: 3}
+  - {fileID: 8300000, guid: dcf77bb05daf9ec449e9aaf38635f17b, type: 3}
+  - {fileID: 8300000, guid: ce5ad7933bc6c0a4f96c090e696e4673, type: 3}
+  - {fileID: 8300000, guid: df0bc8e98a4f31d4ba358036a56662ee, type: 3}
+  - {fileID: 8300000, guid: 4376d7181b875b047aa96a5673120feb, type: 3}
 --- !u!4 &1071919214
 Transform:
   m_ObjectHideFlags: 0
@@ -850,11 +859,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611629851263180453, guid: d9eeed20c89cb924c94266dddcfbebda, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 874.77496
+      value: 652.925
       objectReference: {fileID: 0}
     - target: {fileID: 611629851263180453, guid: d9eeed20c89cb924c94266dddcfbebda, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -269
+      value: -194.9
       objectReference: {fileID: 0}
     - target: {fileID: 1017450684997553176, guid: d9eeed20c89cb924c94266dddcfbebda, type: 3}
       propertyPath: m_AnchorMax.y
@@ -978,11 +987,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3873488022053448163, guid: d9eeed20c89cb924c94266dddcfbebda, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 292.275
+      value: 218.32498
       objectReference: {fileID: 0}
     - target: {fileID: 3873488022053448163, guid: d9eeed20c89cb924c94266dddcfbebda, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -269
+      value: -194.9
       objectReference: {fileID: 0}
     - target: {fileID: 4092415808416511939, guid: d9eeed20c89cb924c94266dddcfbebda, type: 3}
       propertyPath: m_LocalPosition.x
