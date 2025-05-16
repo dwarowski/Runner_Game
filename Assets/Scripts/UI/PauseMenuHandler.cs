@@ -1,23 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenuHandler : MonoBehaviour
 {
-    public GameObject pauseMenu; // Панель паузы
     public Button resumeButton;
     public Button mainMenuButton;
-    private GameObject gameMenu;
-    private GameObject mainMenu;
+    public Transform audioPlayer;
+    public GameObject pauseMenu; // Панель паузы
 
+    private GameObject gameMenuCanvas;
+    private MusicPlayer musicPlayerScript;
     private bool isPaused = false;
 
     void Start()
     {
-        if (gameMenu == null)
-        {
-            Debug.LogWarning("Game canvas not set, check GameStartHandler script");
-        }
         pauseMenu.SetActive(false);
         resumeButton.onClick.AddListener(ResumeGame);
         mainMenuButton.onClick.AddListener(BackToMainMenu);
@@ -38,7 +34,8 @@ public class PauseMenuHandler : MonoBehaviour
     {
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
-        gameMenu.SetActive(false);
+        gameMenuCanvas.SetActive(false);
+        musicPlayerScript.audioPlayer = audioPlayer;
         isPaused = true;
     }
 
@@ -46,21 +43,21 @@ public class PauseMenuHandler : MonoBehaviour
     {
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
-        gameMenu.SetActive(true);
+        gameMenuCanvas.SetActive(true);
         isPaused = false;
     }
 
     public void BackToMainMenu()
     {
         pauseMenu.SetActive(false);
-        gameMenu.SetActive(false);
-        mainMenu.SetActive(true);
+        GameHandler.Instance.ToMenu();
 
     }
 
-    public void SetGameAndMainMenu(GameObject gameMenu, GameObject mainMenu)
+
+    public void SetPrivateVars(GameObject gameMenu, MusicPlayer musicPlayerScript)
     {
-        this.gameMenu = gameMenu;
-        this.mainMenu = mainMenu;
+        this.gameMenuCanvas = gameMenu;
+        this.musicPlayerScript = musicPlayerScript;
     }
 }

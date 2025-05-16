@@ -12,7 +12,7 @@ public class BuffChoose : MonoBehaviour
     }
 
     public BuffOption[] possibleBuffs;
-    public TextMeshPro upgradeText; 
+    public TextMeshPro upgradeText;
     private float speedModifier = 0f;
     private float powerModifier = 0f;
 
