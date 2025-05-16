@@ -13,7 +13,6 @@ public class CarEvolutionTrigger : MonoBehaviour
             // Поднимаемся к родителю с нужным компонентом
             CarEvolutionHandler evolution = other.GetComponentInParent<CarEvolutionHandler>();
             vfxParent = transform.parent;
-            Debug.Log(vfxParent);
             if (evolution != null)
             {
                 evolution.EvolveCar(evolutionVFXPrefab, vfxSpawnPoint.position, vfxParent);

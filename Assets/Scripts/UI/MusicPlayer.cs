@@ -56,7 +56,6 @@ public class MusicPlayer : MonoBehaviour
     }
     public void PlayAudio()
     {
-
         if (m_AudioSource.clip != null && Play == false)
         {
 
@@ -76,7 +75,6 @@ public class MusicPlayer : MonoBehaviour
             Index = 0;
             AudioSourcePlay();
         }
-
     }
 
     void AudioSourcePlay()
