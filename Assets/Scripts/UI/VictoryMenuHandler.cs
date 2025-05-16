@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class VictoryMenu : MonoBehaviour
+public class VictoryMenuHandler : MonoBehaviour
 {
     public GameObject victoryMenu;
     public Button restartButton;
@@ -44,3 +44,4 @@ public class VictoryMenu : MonoBehaviour
         this.mainMenu = mainMenu;
     }
 }
+

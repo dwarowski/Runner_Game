@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3024555581215892522}
-  - component: {fileID: -765903268836343104}
+  - component: {fileID: 6041757529773306834}
   m_Layer: 0
   m_Name: Road section finish line
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 1030919777726117749}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-765903268836343104
+--- !u!114 &6041757529773306834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,10 +43,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1646384365031437784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50ca11f3e3c37d46b96b818fe533002, type: 3}
+  m_Script: {fileID: 11500000, guid: d9ede1322205d9e439df79e6690415e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winMenuPanel: {fileID: 0}
 --- !u!1 &2331110021101099293
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +717,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14.63, y: 7.74, z: -0.55}
+  m_Size: {x: 14.05, y: 7.74, z: 1.11}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1030919777726117749 stripped
 Transform:
@@ -735,7 +734,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3924349141936993091, guid: 0e11e4ce538e5fd41b61b52493cfbf9c, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4438805183769528373, guid: 0e11e4ce538e5fd41b61b52493cfbf9c, type: 3}
       propertyPath: m_Name

@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class FinishLineTrigger : MonoBehaviour
 {
-    public VictoryMenuHandler victoryMenuHandler;
-
     private bool triggered = false;
+    private VictoryMenuHandler victoryMenuHandler;
+
+    private void Start()
+    {
+        victoryMenuHandler = FindFirstObjectByType<VictoryMenuHandler>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,9 +23,8 @@ public class FinishLineTrigger : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("VictoryMenuHandler не назначен на финишном тайле.");
+                Debug.LogWarning("VictoryMenuHandler не найден на сцене.");
             }
         }
     }
 }
-
