@@ -77,7 +77,6 @@ public class RoadGenerator : MonoBehaviour
 
         spawnedTiles.Enqueue(spawned);
         nextSpawnPosition += new Vector3(0, 0, tileLength);
-        Debug.Log("firstTile");
     }
 
     GameObject GetRandomPrefab()

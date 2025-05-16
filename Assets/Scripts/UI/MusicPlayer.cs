@@ -4,36 +4,38 @@ using UnityEngine.UI;
 
 public class MusicPlayer : MonoBehaviour
 {
-    public bool _Play;
-    public TextMeshProUGUI name;
-    public TextMeshProUGUI isp;
-    public Slider time;
-    private AudioSource m_AudioSource;
-    public AudioClip[] audios;
+    public bool Play;
+
+    public Transform audioPlayer;
+
+    private TextMeshProUGUI title;
+    private TextMeshProUGUI singer;
+
     public int Rand;
     public int Index;
+
+    public AudioClip[] audios;
+
+    private AudioSource m_AudioSource;
+
+    private Button playButton;
+    private Button previousButton;
+    private Button nextButton;
+
+
     // Start is called before the first frame update
+
     void Start()
     {
-        if (name == null || isp == null)
-        {
-            Debug.LogError("Ничего не вижу");
-            return;
-        }   
-    }
-    
-    void Awake()
-    {
-        // 1. Находим AudioSource на этом же объекте
-        m_AudioSource = GetComponent<AudioSource>();
-
         // 2. Проверяем, что он есть
-        if (m_AudioSource == null)
+        if (!TryGetComponent(out m_AudioSource))
         {
-            Debug.LogError("AudioSource component is missing on " + gameObject.name);
+            Debug.LogError("AudioSource component is missing on " + m_AudioSource);
             return;
         }
+        InitComponents();
     }
+
     public void Prev()
     {
         Index--;
@@ -41,7 +43,7 @@ public class MusicPlayer : MonoBehaviour
         {
             Index = audios.Length - 1;
         }
-        _AudioSourcePlay();
+        AudioSourcePlay();
     }
     public void Next()
     {
@@ -50,43 +52,58 @@ public class MusicPlayer : MonoBehaviour
         {
             Index = 0;
         }
-        _AudioSourcePlay();
+        AudioSourcePlay();
     }
     public void PlayAudio()
     {
 
-        if (m_AudioSource.clip != null && _Play == false)
+        if (m_AudioSource.clip != null && Play == false)
         {
             m_AudioSource.Play();
-            _Play = true;
+            Play = true;
         }
-        else if (_Play == true)
+        else if (Play == true)
         {
             m_AudioSource.Pause();
-            _Play = false;
+            Play = false;
         }
         else
         {
             Index = 0;
-            _AudioSourcePlay();
+            AudioSourcePlay();
         }
 
     }
 
-    private void Update()
+    void AudioSourcePlay()
     {
-     
-    }
-    void _AudioSourcePlay()
-    {
-        _Play = true;
+        Play = true;
         m_AudioSource.clip = audios[Index];
         m_AudioSource.Play();
         string[] s = m_AudioSource.clip.name.Split('-');
-        name.text = s[1];
-        isp.text = s[0];
-        //time.maxValue = m_AudioSource.clip.length;
-        //time.value = 0;
+        title.text = s[1];
+        singer.text = s[0];
     }
 
+    public void InitComponents()
+    {
+
+        audioPlayer.Find("Title").TryGetComponent(out title);
+        audioPlayer.Find("Singer").TryGetComponent(out singer);
+
+        Transform navigationTransform = audioPlayer.Find("Navigation");
+        if (navigationTransform == null)
+        {
+            Debug.LogError("Navigation GameObject not found on the AudioPlayerCanvas. Make sure it exists and is named correctly.");
+            return; // Stop if Navigation is missing
+        }
+        navigationTransform.Find("Previous Button").TryGetComponent(out nextButton);
+        navigationTransform.Find("Next Button").TryGetComponent(out previousButton);
+
+        audioPlayer.Find("Play Button").TryGetComponent(out playButton);
+
+        playButton.onClick.AddListener(PlayAudio);
+        nextButton.onClick.AddListener(Next);
+        previousButton.onClick.AddListener(Prev);
+    }
 }

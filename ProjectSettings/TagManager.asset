@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Barrier
   - GameCamera
+  - Road
   layers:
   - Default
   - TransparentFX

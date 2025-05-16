@@ -7,7 +7,7 @@ public class CarEvolutionHandler : MonoBehaviour
 
     public UI ui; // UI панель со спидометром и т.д.
     public RoadGenerator roadGenerator;
-    public GroundRepeater SurfaceRepeater;
+    public GroundRepeater surfaceRepeater;
     private GameObject currentCarInstance;
     public void EvolveCar(GameObject vfxPrefab, Vector3 vfxPosition, Transform vfxParent)
     {
@@ -55,13 +55,13 @@ public class CarEvolutionHandler : MonoBehaviour
         if (newCar.TryGetComponent<CarControl>(out var newCarControl))
         {
             newCarControl.ui = ui;
-            newCarControl.Reinitialize();
+            newCarControl.Initialize();
         }
 
         // Переназначем генераторы на новую машину
         Transform carTransform = newCar.GetComponent<Transform>();
         roadGenerator.player = carTransform;
-        SurfaceRepeater.player = carTransform;
+        surfaceRepeater.player = carTransform;
 
         // Восстановить дистанцию
         float savedDistance = 0f;

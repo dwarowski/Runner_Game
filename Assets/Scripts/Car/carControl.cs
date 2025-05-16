@@ -26,6 +26,10 @@ public class CarControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Initialize();
+    }
+    public void Initialize()
+    {
         rigidBody = GetComponent<Rigidbody>();
 
         // Adjust center of mass vertically, to help prevent the car from rolling
@@ -43,23 +47,6 @@ public class CarControl : MonoBehaviour
         {
             Debug.LogError("UIManager не назначен в CarControl!");
         }
-    }
-    public void Reinitialize()
-    {
-        rigidBody = GetComponent<Rigidbody>();
-        // Повторно ищем все колёса
-        wheels = GetComponentsInChildren<WheelScript>();
-
-        // Повторно можно применить массу, если это нужно
-        rigidBody.centerOfMass = Vector3.zero;
-        rigidBody.centerOfMass += Vector3.up * centreOfGravityOffset;
-
-        // Сбросить или обновить нужные переменные
-        baseMotorTorque = motorTorque;
-        baseMaxSpeed = maxSpeed;
-        lastPosition = transform.position;
-
-        Debug.Log("CarControl повторно инициализирован после эволюции.");
     }
 
     public void ApplyBuff(float motorTorqueModifier, float maxSpeedModifier)
@@ -147,19 +134,48 @@ public class CarControl : MonoBehaviour
         totalDistance += distanceThisFrame;
         lastPosition = transform.position;
 
-        if (ui != null)
-        {
-            ui.UpdateUI(Mathf.Abs(forwardSpeed) * 3.6f, totalDistance); // Передаем скорость в км/ч
-        }
+        ui.UpdateSpeed(Mathf.Abs(forwardSpeed) * 3.6f, totalDistance); // Передаем скорость в км/ч
+        ui.UpdateHealthBar(HP / 100f); // Предполагается, что максимум HP = 100
+
     }
+
     public void SetTotalDistance(float distance)
     {
         totalDistance = distance;
         lastPosition = transform.position;
     }
+
     public float GetTotalDistance()
     {
         return totalDistance;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        HP -= damage;
+        if (HP <= 0)
+        {
+            HP = 0;
+            OnDeath();
+        }
+    }
+
+    private void OnDeath()
+    {
+        enabled = false;
+        GameHandler.Instance.GameOver();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Пример: урон зависит от скорости удара
+        float impactForce = collision.relativeVelocity.magnitude;
+
+        if (impactForce > 10f) // Порог, при котором начинается урон
+        {
+            float damage = impactForce * 2f; // Множитель
+            TakeDamage(damage);
+        }
     }
 
 }
