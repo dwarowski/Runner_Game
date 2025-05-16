@@ -9,6 +9,8 @@ public class CarControl : MonoBehaviour
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
     public float HP = 100f;
+    public float decelerationRate = 1000f; // Adjust this value to control how fast the car decelerates after death
+    
 
     public float baseMotorTorque = 2000; // Базовый motorTorque (то, что в редакторе)
     public float baseMaxSpeed = 20;      // Базовая maxSpeed (то, что в редакторе)
@@ -19,6 +21,8 @@ public class CarControl : MonoBehaviour
     public UI ui;
     private float totalDistance = 0f;   // Общее пройденное расстояние
     private Vector3 lastPosition;       // Предыдущая позиция игрока
+    private bool isDead = false; // Add a flag to track the vehicle's death state
+    private float currentBrakeTorque = 0f; // Store the current brake torque value
 
     WheelScript[] wheels;
     Rigidbody rigidBody;
@@ -69,6 +73,32 @@ public class CarControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead)
+        {
+            // If the car is dead, apply increasing brake torque until fully stopped
+            currentBrakeTorque = Mathf.MoveTowards(currentBrakeTorque, brakeTorque * 10, decelerationRate * Time.deltaTime); // Increase brakeTorque over time
+
+            foreach (var wheel in wheels)
+            {
+                wheel.WheelCollider.motorTorque = 0; // Stop applying motor torque
+                wheel.WheelCollider.brakeTorque = currentBrakeTorque; // Apply the increasing brake torque
+            }
+
+            // Optionally, freeze the rigidbody's rotation if it's still spinning
+            if (rigidBody.angularVelocity.magnitude > 0.1f) // Add a small threshold to avoid unnecessary operations
+            {
+                rigidBody.angularVelocity = Vector3.Lerp(rigidBody.angularVelocity, Vector3.zero, decelerationRate * Time.fixedDeltaTime); //Smoothly reduce rotation
+            }
+
+            // Optionally, freeze the rigidbody's movement when stopped
+            if (rigidBody.linearVelocity.magnitude < 0.1f)
+            {
+                rigidBody.linearVelocity = Vector3.zero;
+            }
+
+            return; // Skip the normal driving logic
+        }
+
         float vInput = Input.GetAxis("Vertical");
         float hInput = Input.GetAxis("Horizontal");
 
@@ -150,6 +180,11 @@ public class CarControl : MonoBehaviour
         return totalDistance;
     }
 
+    public bool GetLife()
+    {
+        return isDead;
+    }
+
     public void TakeDamage(float damage)
     {
         HP -= damage;
@@ -162,12 +197,18 @@ public class CarControl : MonoBehaviour
 
     private void OnDeath()
     {
-        enabled = false;
+        isDead = true;
         GameHandler.Instance.GameOver();
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Road"))
+        {
+            // Не наносим урон, если столкнулись с объектом с тегом "Road"
+            return;
+        }
+
         // Пример: урон зависит от скорости удара
         float impactForce = collision.relativeVelocity.magnitude;
 

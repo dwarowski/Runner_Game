@@ -12,15 +12,20 @@ public class CarEvolutionTrigger : MonoBehaviour
         {
             // Поднимаемся к родителю с нужным компонентом
             CarEvolutionHandler evolution = other.GetComponentInParent<CarEvolutionHandler>();
+            CarControl carControl = other.GetComponentInParent<CarControl>();
             vfxParent = transform.parent;
-            if (evolution != null)
+            if (carControl.GetLife() == false)
             {
-                evolution.EvolveCar(evolutionVFXPrefab, vfxSpawnPoint.position, vfxParent);
-                Destroy(gameObject); // удаляем гараж после использования
-            }
-            else
-            {
-                Debug.LogWarning("CarEvolutionHandler не найден у родителя объекта с тегом Player.");
+                if (evolution != null)
+                {
+                    evolution.EvolveCar(evolutionVFXPrefab, vfxSpawnPoint.position, vfxParent);
+                    Destroy(gameObject); // удаляем гараж после использования
+                }
+                else
+                {
+                    Debug.LogWarning("CarEvolutionHandler не найден у родителя объекта с тегом Player.");
+                }
+
             }
         }
     }

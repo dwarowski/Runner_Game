@@ -12,6 +12,7 @@ public class GroundRepeater : MonoBehaviour
 
     public void Initialize(Transform playerTransform)
     {
+        player = playerTransform;
         if (groundPrefab == null)
         {
             Debug.LogError("Ground Prefab is not assigned in the Inspector!");

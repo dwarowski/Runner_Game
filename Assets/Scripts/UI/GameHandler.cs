@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +29,7 @@ public class GameHandler : MonoBehaviour
     private GameObject pauseMenuCanvas;
     private PauseMenuHandler pauseMenuScript;
     private Transform cameraAnchor;
+    private CarControl carControl;
 
     void Awake()
     {
@@ -69,7 +72,7 @@ public class GameHandler : MonoBehaviour
         }
 
         // Подключаем UI к машине
-        CarControl carControl = currentCar.GetComponent<CarControl>();
+        currentCar.TryGetComponent(out carControl);
         if (carControl != null && ui != null)
         {
             carControl.ui = ui;
@@ -97,6 +100,8 @@ public class GameHandler : MonoBehaviour
     {
         gameMenuCanvas.SetActive(false);
         pauseMenuCanvas.SetActive(false);
+        gameOverCanvas.transform.Find("Total Score").TryGetComponent<TextMeshProUGUI>(out var totalScoreUGUI);
+        totalScoreUGUI.text = Math.Round(carControl.GetTotalDistance()).ToString();
         gameOverCanvas.SetActive(true);
     }
 
@@ -126,6 +131,10 @@ public class GameHandler : MonoBehaviour
 
     public void ShowVictory()
     {
+
+        finishMenuCanvas.transform.Find("Total Score").TryGetComponent<TextMeshProUGUI>(out var totalScoreUGUI);
+        totalScoreUGUI.text = Math.Round(carControl.GetTotalDistance()).ToString();
+
         Time.timeScale = 0f;
         finishMenuCanvas.SetActive(true);
         gameMenuCanvas.SetActive(false);

@@ -544,11 +544,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motorTorque: 2000
   brakeTorque: 2000
-  maxSpeed: 20
+  maxSpeed: 100
   steeringRange: 30
   steeringRangeAtMaxSpeed: 10
   centreOfGravityOffset: -1
   HP: 100
+  decelerationRate: 1000000
   baseMotorTorque: 2000
   baseMaxSpeed: 20
   ui: {fileID: 0}

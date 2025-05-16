@@ -7,7 +7,12 @@ public class FinishLineTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameHandler.Instance.ShowVictory();
+            CarControl carControl = other.GetComponentInParent<CarControl>();
+            if (carControl.GetLife() == false)
+            {
+                GameHandler.Instance.ShowVictory();
+            }
+            
         }
     }
 }
