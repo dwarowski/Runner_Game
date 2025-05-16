@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class MusicPlayer : MonoBehaviour
 {
     public bool _Play;
+    public ButtonNext; 
     public TextMeshProUGUI name;
     public TextMeshProUGUI isp;
     public Slider time;
