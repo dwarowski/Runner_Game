@@ -59,16 +59,20 @@ public class MusicPlayer : MonoBehaviour
 
         if (m_AudioSource.clip != null && Play == false)
         {
+
+            Debug.Log("if" + Play);
             m_AudioSource.Play();
             Play = true;
         }
         else if (Play == true)
         {
+            Debug.Log("elseif" + Play);
             m_AudioSource.Pause();
             Play = false;
         }
         else
         {
+            Debug.Log("else" + Play);
             Index = 0;
             AudioSourcePlay();
         }
@@ -85,9 +89,9 @@ public class MusicPlayer : MonoBehaviour
         singer.text = s[0];
     }
 
-    public void InitComponents()
+    private void InitComponents()
     {
-
+        
         audioPlayer.Find("Title").TryGetComponent(out title);
         audioPlayer.Find("Singer").TryGetComponent(out singer);
 
@@ -101,7 +105,6 @@ public class MusicPlayer : MonoBehaviour
         navigationTransform.Find("Next Button").TryGetComponent(out previousButton);
 
         audioPlayer.Find("Play Button").TryGetComponent(out playButton);
-
         playButton.onClick.AddListener(PlayAudio);
         nextButton.onClick.AddListener(Next);
         previousButton.onClick.AddListener(Prev);
