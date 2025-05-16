@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuCanvas: {fileID: 2126420976}
   gameMenuCanvas: {fileID: 406395542}
-  pauseMenuCanvas: {fileID: 1473130513}
+  pauseMenuObject: {fileID: 1473130513}
   gameOverCanvas: {fileID: 384877826}
   mainMenuLocation: {fileID: 914754871}
   carPrefab: {fileID: 4791584479760273777, guid: 7855fbe652d2e3845a30116d30049d68, type: 3}
